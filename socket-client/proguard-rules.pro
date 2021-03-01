@@ -9,7 +9,7 @@
 
 -keep class com.android.socket.client.sdk**{  public protected *; }
 -keep class com.android.socket.client.impl**{  public protected *; }
--keep class com.android.socket.client.core**{ public protected *; }
+#-keep class com.android.socket.client.core**{ public protected *; }
 
 -keepclassmembers enum * {                                                      # 保持枚举 enum 类不被混淆
     public static **[] values();
