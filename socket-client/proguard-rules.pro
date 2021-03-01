@@ -10,11 +10,11 @@
 -keep class com.android.socket.client.sdk**{  public protected *; }
 -keep class com.android.socket.client.impl**{  public protected *; }
 #-keep class com.android.socket.client.core**{ public protected *; }
--keep public class com.android.socket.client.core.IReaderData
--keep public class com.android.socket.client.core.interfaces.IStateSender
--keep public class com.android.socket.client.core.interfaces.IReader
--keep public class com.android.socket.client.core.interfaces.IHeartbeatSendable
--keep public class com.android.socket.client.core.ReadException
+-keep public class com.android.socket.client.core.IReaderData {*;}
+-keep public class com.android.socket.client.core.interfaces.IStateSender{*;}
+-keep public class com.android.socket.client.core.interfaces.IReader{*;}
+-keep public class com.android.socket.client.core.interfaces.IHeartbeatSendable{*;}
+-keep public class com.android.socket.client.core.ReadException{*;}
 
 
 -keepclassmembers enum * {                                                      # 保持枚举 enum 类不被混淆
