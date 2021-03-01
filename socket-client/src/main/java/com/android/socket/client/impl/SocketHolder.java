@@ -1,7 +1,7 @@
 package com.android.socket.client.impl;
 
 import com.android.socket.client.core.SLog;
-import com.android.socket.client.impl.abilities.IConnectionSwitchListener;
+import com.android.socket.client.impl.listener.IConnectionSwitchListener;
 import com.android.socket.client.sdk.client.ConnectionInfo;
 import com.android.socket.client.sdk.client.BSocketOptions;
 import com.android.socket.client.sdk.client.connection.IConnectionManager;

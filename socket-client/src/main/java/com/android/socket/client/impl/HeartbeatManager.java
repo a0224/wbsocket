@@ -1,7 +1,7 @@
 package com.android.socket.client.impl;
 
 import com.android.socket.client.core.interfaces.IHeartbeatSendable;
-import com.android.socket.client.impl.exceptions.DogDeadException;
+import com.android.socket.client.impl.exceptions.HeartbeatDeadException;
 import com.android.socket.client.sdk.client.BSocketOptions;
 import com.android.socket.client.sdk.client.bean.IHeartbeat;
 import com.android.socket.client.sdk.client.connection.IConnectionManager;
@@ -111,7 +111,7 @@ public class HeartbeatManager implements IHeartbeat {
             }
             if (mManager != null && mSendable != null) {
                 if (mOkOptions.getPulseFeedLoseTimes() != -1 && mLoseTimes.incrementAndGet() >= mOkOptions.getPulseFeedLoseTimes()) {
-                    mManager.disconnect(new DogDeadException("you need feed dog on time,otherwise he will die"));
+                    mManager.disconnect(new HeartbeatDeadException("you need feed dog on time,otherwise he will die"));
                 } else {
                     mManager.send(mSendable);
                 }

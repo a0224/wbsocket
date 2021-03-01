@@ -3,7 +3,7 @@ package com.android.socket.client.impl;
 import com.android.socket.client.impl.action.ActionHandler;
 import com.android.socket.client.core.interfaces.ISendable;
 import com.android.socket.client.core.SLog;
-import com.android.socket.client.impl.iothreads.IOThreadManager;
+import com.android.socket.client.impl.threads.IOThreadManager;
 import com.android.socket.client.impl.exceptions.ManuallyDisconnectException;
 import com.android.socket.client.impl.exceptions.UnConnectException;
 import com.android.socket.client.sdk.client.ConnectionInfo;

@@ -2,7 +2,7 @@ package com.android.socket.client.impl;
 
 
 import com.android.socket.client.impl.action.ActionDispatcher;
-import com.android.socket.client.impl.abilities.IConnectionSwitchListener;
+import com.android.socket.client.impl.listener.IConnectionSwitchListener;
 import com.android.socket.client.sdk.client.ConnectionInfo;
 import com.android.socket.client.sdk.client.action.IActionListener;
 import com.android.socket.client.sdk.client.connection.IConnectionManager;

@@ -1,4 +1,4 @@
-package com.android.socket.client.impl.iothreads;
+package com.android.socket.client.impl.threads;
 
 import com.android.socket.client.impl.exceptions.ManuallyDisconnectException;
 import com.android.socket.client.core.interfaces.IStateSender;

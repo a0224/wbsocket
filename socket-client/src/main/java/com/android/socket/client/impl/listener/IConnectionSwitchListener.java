@@ -1,4 +1,4 @@
-package com.android.socket.client.impl.abilities;
+package com.android.socket.client.impl.listener;
 
 
 import com.android.socket.client.sdk.client.ConnectionInfo;

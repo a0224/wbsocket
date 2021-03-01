@@ -1,52 +1,39 @@
-package com.android.socket.client.impl.iothreads;
+package com.android.socket.client.impl.threads;
+
 
 import com.android.socket.client.impl.exceptions.ManuallyDisconnectException;
 import com.android.socket.client.core.interfaces.IReader;
 import com.android.socket.client.core.interfaces.IStateSender;
-import com.android.socket.client.core.interfaces.IWriter;
 import com.android.socket.client.core.SLog;
 import com.android.socket.client.sdk.client.action.IAction;
 import com.android.socket.client.common.base.AbsLoopThread;
 
 import java.io.IOException;
 
-public class SimplexIOThread extends AbsLoopThread {
+public class DuplexReadThread extends AbsLoopThread {
     private IStateSender mStateSender;
 
     private IReader mReader;
 
-    private IWriter mWriter;
-
-    private boolean isWrite = false;
-
-
-    public SimplexIOThread(IReader reader,
-                           IWriter writer, IStateSender stateSender) {
-        super("client_simplex_io_thread");
+    public DuplexReadThread(IReader reader, IStateSender stateSender) {
+        super("client_duplex_read_thread");
         this.mStateSender = stateSender;
         this.mReader = reader;
-        this.mWriter = writer;
     }
 
     @Override
-    protected void beforeLoop() throws IOException {
-        mStateSender.sendBroadcast(IAction.ACTION_WRITE_THREAD_START);
+    protected void beforeLoop() {
         mStateSender.sendBroadcast(IAction.ACTION_READ_THREAD_START);
     }
 
     @Override
     protected void runInLoopThread() throws IOException {
-        isWrite = mWriter.write();
-        if (isWrite) {
-            isWrite = false;
-            mReader.read();
-        }
+        mReader.read();
     }
 
     @Override
     public synchronized void shutdown(Exception e) {
         mReader.close();
-        mWriter.close();
         super.shutdown(e);
     }
 
@@ -54,9 +41,8 @@ public class SimplexIOThread extends AbsLoopThread {
     protected void loopFinish(Exception e) {
         e = e instanceof ManuallyDisconnectException ? null : e;
         if (e != null) {
-            SLog.e("simplex error,thread is dead with exception:" + e.getMessage());
+            SLog.e("duplex read error,thread is dead with exception:" + e.getMessage());
         }
-        mStateSender.sendBroadcast(IAction.ACTION_WRITE_THREAD_SHUTDOWN, e);
         mStateSender.sendBroadcast(IAction.ACTION_READ_THREAD_SHUTDOWN, e);
     }
 }
